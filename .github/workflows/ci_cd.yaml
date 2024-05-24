@@ -11,11 +11,25 @@ jobs:
       MIX_ENV: test
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup Elixir
         uses: erlef/setup-beam@v1.17.3
         with:
           version-file: .tool-versions
           version-type: strict
+
+      - name: Cache deps directory
+        uses: actions/cache@v4
+        id: cache-deps
+        with:
+          path: |
+            deps
+            _build
+          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-mix
+
       - name: Get dependencies
         run: mix deps.get
+
       - run: mix compile --warnings-as-errors
