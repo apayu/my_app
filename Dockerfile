@@ -5,6 +5,8 @@ ARG BUILDER_IMG="hexpm/elixir:${EX_VSN}-erlang-${OTP_VSN}-ubuntu-${DEB_VSN}"
 ARG RUNNER_IMG="ubuntu:${DEB_VSN}"
 FROM --platform=linux/amd64 ${BUILDER_IMG} AS builder
 
+ENV ERL_FLAGS="+JPperf true"
+
 RUN apt-get update -y \
     && apt-get -y install openssh-client build-essential git ca-certificates curl gnupg rsync
 
