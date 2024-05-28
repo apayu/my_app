@@ -87,9 +87,13 @@ jobs:
         id: parse-asdf
         run: ./scripts/versions.sh
 
+      - uses: docker/setup-buildx-action@v3
+
       - uses: docker/build-push-action@v5
         with:
           context: .
+          cache-from: type=registry,ref=ghcr.io/apayu/my_app:cache
+          cache-to: type=registry,ref=ghcr.io/apayu/my_app:cache,mode=max
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           push: true
