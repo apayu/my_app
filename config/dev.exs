@@ -1,5 +1,16 @@
 import Config
 
+# Configure your database
+config :my_app, MyApp.Repo,
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  database: "my_app_dev",
+  port: 5433,
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -13,7 +24,7 @@ config :my_app, MyAppWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "cSSg5BR0UNWmyyJTfP4ZCX4oVWIBo7U6DhcoA20eJ4EF1I1l9k88O0RaN9ea7zPg",
+  secret_key_base: "3C1GKGGGQ1c+JBwxzc+3GU43Usq98UHABnIJJVYaK/fqGn3L3ZANWbNpGJy+tSI2",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:my_app, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:my_app, ~w(--watch)]}

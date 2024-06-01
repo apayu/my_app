@@ -5,9 +5,17 @@
 # is restricted to this project.
 
 # General application configuration
+# This file is responsible for configuring your application
+# and its dependencies with the aid of the Config module.
+#
+# This configuration file is loaded before any dependency and
+# is restricted to this project.
+
+# General application configuration
 import Config
 
 config :my_app,
+  ecto_repos: [MyApp.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
@@ -19,7 +27,7 @@ config :my_app, MyAppWeb.Endpoint,
     layout: false
   ],
   pubsub_server: MyApp.PubSub,
-  live_view: [signing_salt: "lvCmFVZE"]
+  live_view: [signing_salt: "E4jrD4Z9"]
 
 # Configures the mailer
 #
@@ -59,6 +67,9 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :my_app,
+  generators: [timestamp_type: :utc_datetime]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
